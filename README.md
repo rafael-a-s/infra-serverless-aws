@@ -1,21 +1,19 @@
-# 📦 API de Pedidos - Serverless com AWS Lambda e Fargate
+# 🌍 Arquitetura Serverless AWS com Terraform
 
 ## 📌 Tecnologias Utilizadas
 
-### **Backend**
-- [Node.js](https://nodejs.org/) - Plataforma para execução do backend
-- [Express.js](https://expressjs.com/) - Framework para criar APIs REST
+### **Infraestrutura como Código**
+- [Terraform](https://www.terraform.io/) - Provisionamento da infraestrutura na AWS
+- [AWS IAM](https://aws.amazon.com/iam/) - Controle de permissões e autenticação
+- [AWS VPC](https://aws.amazon.com/vpc/) - Configuração de rede e segurança
+- [AWS CloudWatch](https://aws.amazon.com/cloudwatch/) - Logs e monitoramento
+- [AWS CodePipeline](https://aws.amazon.com/codepipeline/) - CI/CD para a infraestrutura
+
+### **Backend (Implementado em Outro Repositório)**
 - [AWS Lambda](https://aws.amazon.com/lambda/) - Funções serverless para operações rápidas
 - [AWS Fargate](https://aws.amazon.com/fargate/) - Containers gerenciados para operações pesadas
 - [AWS API Gateway](https://aws.amazon.com/api-gateway/) - Gerenciamento das requisições HTTP
-- [DynamoDB](https://aws.amazon.com/dynamodb/) ou [RDS](https://aws.amazon.com/rds/) - Armazenamento de pedidos
-- [Docker](https://www.docker.com/) - Containerização do backend para rodar no Fargate
-
-### **DevOps e Monitoramento**
-- [AWS IAM](https://aws.amazon.com/iam/) - Controle de permissões e autenticação
-- [AWS CloudWatch](https://aws.amazon.com/cloudwatch/) - Logs e monitoramento do sistema
-- [GitHub Actions](https://github.com/features/actions) - Pipeline de CI/CD
-- [AWS CodePipeline](https://aws.amazon.com/codepipeline/) - Automação do deploy
+- [AWS DynamoDB](https://aws.amazon.com/dynamodb/) ou [AWS RDS](https://aws.amazon.com/rds/) - Armazenamento de pedidos
 
 ---
 
@@ -38,12 +36,12 @@
 - [ ] **22/02 - 23/02** → Definir requisitos e modelar a arquitetura do sistema.
 - [ ] **26/02 - 27/02** → Criar conta AWS, configurar permissões IAM e roles para Lambda e Fargate.
 - [ ] **28/02 - 01/03** → Estudar AWS Lambda, AWS Fargate e API Gateway, definindo fluxos da API.
-- [ ] **04/03 - 08/03** → Configurar ambiente local com Docker e AWS CLI para testes iniciais.
+- [ ] **04/03 - 08/03** → Configurar ambiente local com Terraform e AWS CLI para testes iniciais.
 
-### 📌 **Fase 2: Desenvolvimento da API e Funções Serverless (11/03 a 29/03)**
-- [ ] **11/03 - 15/03** → Criar funções AWS Lambda básicas para operações de leitura e exclusão de pedidos.
-- [ ] **18/03 - 22/03** → Criar um container Docker para a aplicação backend e testar localmente.
-- [ ] **25/03 - 29/03** → Configurar AWS Fargate para rodar o container e integrar com API Gateway.
+### 📌 **Fase 2: Provisionamento da Infraestrutura com Terraform (11/03 a 29/03)**
+- [ ] **11/03 - 15/03** → Criar os módulos Terraform para IAM, VPC e API Gateway.
+- [ ] **18/03 - 22/03** → Criar os módulos Terraform para AWS Lambda e AWS Fargate.
+- [ ] **25/03 - 29/03** → Implementar a integração entre os serviços provisionados.
 
 ### 📌 **Fase 3: Banco de Dados, Monitoramento e Escalabilidade (01/04 a 19/04)**
 - [ ] **01/04 - 05/04** → Escolher e configurar banco de dados (DynamoDB ou RDS).
@@ -62,35 +60,32 @@
 
 ---
 
-## 📖 Como Rodar o Projeto Localmente
+## 📖 Como Provisionar a Infraestrutura com Terraform
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/seu-usuario/api-pedidos.git
-   cd api-pedidos
+   git clone https://github.com/seu-usuario/infra-serverless-aws.git
+   cd infra-serverless-aws
    ```
-2. Instale as dependências:
-   ```bash
-   npm install
-   ```
-3. Configure o **AWS CLI**:
+2. Configure o **AWS CLI**:
    ```bash
    aws configure
    ```
-4. Execute a aplicação localmente com Docker:
+3. Inicialize e aplique o Terraform:
    ```bash
-   docker-compose up
+   terraform init
+   terraform apply -auto-approve
    ```
-5. Para rodar Lambda localmente, use **AWS SAM**:
+4. Para destruir a infraestrutura quando não for mais necessária:
    ```bash
-   sam local invoke
+   terraform destroy -auto-approve
    ```
 
 ---
 
 ## 📌 Próximos Passos
-- [ ] Criar infraestrutura no AWS (ECS, Lambda, API Gateway).
+- [ ] Criar infraestrutura na AWS com Terraform (ECS, Lambda, API Gateway).
 - [ ] Implementar a comunicação entre Lambda e Fargate.
-- [ ] Testar as chamadas da API e otimizar performance.
+- [ ] Testar a infraestrutura provisionada e otimizar recursos.
 
-Se precisar de ajuda, entre em contato! 🚀🔥
+Se precisar de ajustes ou mais detalhes, entre em contato! 🚀🔥
