@@ -15,6 +15,8 @@
 - [AWS API Gateway](https://aws.amazon.com/api-gateway/) - Gerenciamento das requisições HTTP
 - [AWS DynamoDB](https://aws.amazon.com/dynamodb/) ou [AWS RDS](https://aws.amazon.com/rds/) - Armazenamento de pedidos
 
+### **Materiais usados**
+- [Como lançar uma EC2 completa na AWS com Terraform, AWS CLI e manualmente](https://www.youtube.com/watch?v=Ohro_hF7-rU)
 ---
 
 ## 🔄 Fluxo do Sistema
