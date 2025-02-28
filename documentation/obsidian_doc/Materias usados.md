@@ -5,3 +5,5 @@
 - [Microserviços CRUD para DynamoDB usando API Gateway (Terraform)](https://aws.plainenglish.io/crud-microservices-for-dynamodb-using-api-gateway-terraform-ac4765637b0c)
 - [Deploying Todo CRUD to AWS Lambda](https://awstip.com/deploying-todo-crud-to-aws-lambda-96de686aa47b)
 - [Basic serverless CRUD Application on AWS with CDK for Terraform](https://www.youtube.com/watch?v=sf2EgmHRHiw)
+- [Tutorial: Crie uma API HTTP CRUD com o Lambda e o DynamoDB](https://docs.aws.amazon.com/pt_br/apigateway/latest/developerguide/http-api-dynamo-db.html)
+- [Processe eventos de forma assíncrona com o Amazon API Gateway, o Amazon SQS e o AWS Fargate](https://docs.aws.amazon.com/pt_br/prescriptive-guidance/latest/patterns/process-events-asynchronously-with-amazon-api-gateway-amazon-sqs-and-aws-fargate.html)
