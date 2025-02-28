@@ -1,29 +1,11 @@
-## 📅 Cronograma de Desenvolvimento
-
-### 📌 **Fase 1: Planejamento e Configuração do Ambiente (22/02 a 08/03)**
-- [ ] **22/02 - 23/02** → Definir requisitos e modelar a arquitetura do sistema.
-- [ ] **26/02 - 27/02** → Criar conta AWS, configurar permissões IAM e roles para Lambda e Fargate.
-- [ ] **28/02 - 01/03** → Estudar AWS Lambda, AWS Fargate e API Gateway, definindo fluxos da API.
-- [ ] **04/03 - 08/03** → Configurar ambiente local com Terraform e AWS CLI para testes iniciais.
-
-### 📌 **Fase 2: Provisionamento da Infraestrutura com Terraform (11/03 a 29/03)**
-- [ ] **11/03 - 15/03** → Criar os módulos Terraform para IAM, VPC e API Gateway.
-- [ ] **18/03 - 22/03** → Criar os módulos Terraform para AWS Lambda e AWS Fargate.
-- [ ] **25/03 - 29/03** → Implementar a integração entre os serviços provisionados.
-
-### 📌 **Fase 3: Banco de Dados, Monitoramento e Escalabilidade (01/04 a 19/04)**
-- [ ] **01/04 - 05/04** → Escolher e configurar banco de dados (DynamoDB ou RDS).
-- [ ] **08/04 - 12/04** → Implementar comunicação entre Lambda/Fargate e o banco de dados.
-- [ ] **15/04 - 19/04** → Configurar logs e monitoramento com AWS CloudWatch.
-
-### 📌 **Fase 4: Segurança, CI/CD e Otimização (22/04 a 10/05)**
-- [ ] **22/04 - 26/04** → Implementar autenticação e segurança com IAM e API Gateway.
-- [ ] **29/04 - 03/05** → Criar pipeline CI/CD para deploy automático (GitHub Actions, AWS CodePipeline).
-- [ ] **06/05 - 10/05** → Otimizar tempo de resposta das funções Lambda e dos containers.
-
-### 📌 **Fase 5: Testes Finais, Documentação e Entrega (13/05 a 31/05)**
-- [ ] **13/05 - 17/05** → Testes de carga e validação da escalabilidade do sistema.
-- [ ] **20/05 - 24/05** → Escrever documentação técnica e criar guias de uso.
-- [ ] **27/05 - 31/05** → Preparar apresentação final e revisar o funcionamento do sistema.
-
----
+| Fase                                      | Data de Início | Data de Término | Atividades | Carga Horária |
+|-------------------------------------------|---------------|---------------|---------------------------------------------------------------|--------------|
+| Planejamento e Configuração do Ambiente  | 22/02/2025   | 07/03/2025   | Configuração da conta AWS, permissões IAM, instalação do Terraform e AWS CLI. Definição da arquitetura e criação dos arquivos principais do Terraform. | 8 horas |
+| Criação da Estrutura do Projeto          | 10/03/2025   | 14/03/2025   | Organização dos módulos Terraform para provisionamento de infraestrutura e criação de repositório no GitHub. | 6 horas |
+| Desenvolvimento da API e Funções Serverless | 17/03/2025   | 28/03/2025   | Criação de funções AWS Lambda e infraestrutura AWS Fargate usando Terraform. Configuração do API Gateway para roteamento da API. | 10 horas |
+| Banco de Dados e Integração               | 31/03/2025   | 11/04/2025   | Provisionamento do banco de dados DynamoDB/RDS via Terraform. Integração com AWS Lambda e Fargate. | 10 horas |
+| Monitoramento e Segurança                 | 14/04/2025   | 25/04/2025   | Configuração do AWS CloudWatch para logs e métricas. Implementação de autenticação e segurança no API Gateway. | 8 horas |
+| Otimização e Escalabilidade               | 28/04/2025   | 09/05/2025   | Ajustes no tempo de resposta das funções Lambda e containers, configuração de escalabilidade automática. | 6 horas |
+| Configuração de CI/CD                     | 12/05/2025   | 23/05/2025   | Criação da pipeline CI/CD no AWS CodePipeline e GitHub Actions. | 4 horas |
+| Testes e Ajustes Finais                   | 26/05/2025   | 06/06/2025   | Testes de carga na API Gateway, análise de logs e ajustes de desempenho. | 4 horas |
+| Documentação e Entrega Final              | 09/06/2025   | 13/06/2025   | Documentação do código Terraform, relatório técnico e apresentação final. | 4 horas |
