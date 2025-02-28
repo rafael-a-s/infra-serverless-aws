@@ -1,5 +1,9 @@
 # 🌍 Arquitetura Serverless AWS com Terraform
 
+## Proposta arquitetura
+
+![Demonstração do Projeto](assets/arquitetura.gif)
+
 ## 📌 Tecnologias Utilizadas
 
 ### **Infraestrutura como Código**
