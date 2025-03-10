@@ -1,0 +1,15 @@
+{
+    "name": "post-pedido",
+    "version": "1.0.0",
+    "description": "Serviço para criar pedidos no DynamoDB",
+    "main": "app.js",
+    "dependencies": {
+      "aws-sdk": "^2.1362.0",
+      "body-parser": "^1.20.2",
+      "express": "^4.18.2"
+    },
+    "scripts": {
+      "start": "node app.js"
+    },
+    "license": "MIT"
+  }  
