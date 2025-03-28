@@ -1,55 +1,45 @@
-resource "aws_lambda_function" "hello_lambda" {
-  filename         = "${path.module}/lambda/function.zip"
-  function_name    = "hello-lambda"
-  role             = "arn:aws:iam::637423576760:role/lambda_exec_role"
-  handler          = "index.handler"
-  runtime          = "nodejs18.x"
-  source_code_hash = filebase64sha256("${path.module}/lambda/function.zip")
+module "lambda_role" {
+  source             = "./modules/lambda_role"
+  role_name          = "lambda_exec_role"
+  dynamodb_table_arn = module.dynamodb_pedidos.table_arn
 }
 
-# 1. API Gateway REST API
-resource "aws_api_gateway_rest_api" "api" {
-  name        = "rafael-api"
-  description = "API de exemplo conectada à Lambda"
+module "dynamodb_pedidos" {
+  source         = "./modules/dynamodb"
+  table_name     = "Pedidos"
+  hash_key_name  = "id"
+  hash_key_type  = "S"
+  tags = {
+    Environment = "dev"
+    Projeto     = "LambdaPedidos"
+  }
 }
 
-# 2. Recurso /hello
-resource "aws_api_gateway_resource" "hello" {
-  rest_api_id = aws_api_gateway_rest_api.api.id
-  parent_id   = aws_api_gateway_rest_api.api.root_resource_id
-  path_part   = "hello"
+# MÓDULOS DE LAMBDA
+
+module "lambda_get_pedido" {
+  source        = "./modules/lambda_function"
+  function_name = "getPedido"
+  filename      = "${path.module}/lambda/getPedido/function.zip"
+  role_arn      = module.lambda_role.role_arn
+  depends_on    = [module.lambda_role]
 }
 
-# 3. Método GET no /hello
-resource "aws_api_gateway_method" "get_hello" {
-  rest_api_id   = aws_api_gateway_rest_api.api.id
-  resource_id   = aws_api_gateway_resource.hello.id
-  http_method   = "GET"
-  authorization = "NONE"
+module "lambda_delete_pedido" {
+  source        = "./modules/lambda_function"
+  function_name = "deletePedido"
+  filename      = "${path.module}/lambda/deletePedido/function.zip"
+  role_arn      = module.lambda_role.role_arn
+  depends_on    = [module.lambda_role]
 }
 
-# 4. Integração GET com Lambda
-resource "aws_api_gateway_integration" "lambda_integration" {
-  rest_api_id = aws_api_gateway_rest_api.api.id
-  resource_id = aws_api_gateway_resource.hello.id
-  http_method = aws_api_gateway_method.get_hello.http_method
-  integration_http_method = "POST"
-  type        = "AWS_PROXY"
-  uri         = aws_lambda_function.hello_lambda.invoke_arn
-}
-
-# 5. Permitir que o API Gateway invoque a Lambda
-resource "aws_lambda_permission" "apigw_invoke" {
-  statement_id  = "AllowAPIGatewayInvoke"
-  action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.hello_lambda.function_name
-  principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_api_gateway_rest_api.api.execution_arn}/*/*"
-}
-
-# 6. Deployment da API
-resource "aws_api_gateway_deployment" "api_deployment" {
-  depends_on = [aws_api_gateway_integration.lambda_integration]
-  rest_api_id = aws_api_gateway_rest_api.api.id
-  stage_name  = "dev"
+module "api_gateway" {
+  source                      = "./modules/api_gateway"
+  api_name                    = "rafael-api"
+  api_description             = "API com GET e DELETE de pedido integrando Lambda"
+  lambda_get_invoke_arn       = module.lambda_get_pedido.invoke_arn
+  lambda_get_function_name    = module.lambda_get_pedido.function_name
+  lambda_delete_invoke_arn    = module.lambda_delete_pedido.invoke_arn
+  lambda_delete_function_name = module.lambda_delete_pedido.function_name
+  region                      = var.region # <--- aqui
 }

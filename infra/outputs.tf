@@ -1,7 +1,11 @@
-output "lambda_function_name" {
-  value = aws_lambda_function.hello_lambda.function_name
+output "get_pedido_url" {
+  value = "GET → ${module.api_gateway.url}/pedido/{id}"
 }
 
-output "api_url" {
-  value = "https://${aws_api_gateway_rest_api.api.id}.execute-api.${var.region}.amazonaws.com/dev/hello"
+output "delete_pedido_url" {
+  value = "DELETE → ${module.api_gateway.url}/pedido/{id}"
+}
+
+output "dynamodb_table_name" {
+  value = module.dynamodb_pedidos.table_name
 }
