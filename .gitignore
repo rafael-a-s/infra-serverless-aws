@@ -1,0 +1,23 @@
+# Arquivos de estado
+*.tfstate
+*.tfstate.*
+
+# Arquivos de plano
+*.tfplan
+
+# Arquivo de lock do provedor (pode manter localmente, mas evite no repositório)
+.terraform.lock.hcl
+
+# Pasta interna usada pelo Terraform
+/infra/.terraform/
+
+# Arquivos de saída (ex: zips locais)
+*.zip
+
+# Pastas de node_modules das funções Lambda (só com zip já basta)
+**/node_modules/
+
+# IDEs e sistema
+.vscode/
+*.log
+.DS_Store
