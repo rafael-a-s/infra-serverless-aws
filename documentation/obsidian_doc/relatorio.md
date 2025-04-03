@@ -84,3 +84,36 @@ Após as mudanças, foi possível aplicar toda a infraestrutura com sucesso via 
   "id": "1",
   "nome": "Rafael Aguiar"
 }
+
+## Dia 02/03
+
+Processo de hoje foi testar o modulo do fargate.
+Adicionar as imagens docker no ECS da aws.
+Processo:
+
+```JSON
+
+cd fargate
+cd postPedido
+docker build -t post-pedido .
+cd ..
+ls
+cd putPedido
+docker build -t put-pedido .
+aws ecr create-repository --repository-name post-pedido
+exit
+aws ecr create-repository --repository-name post-pedido
+aws ecr create-repository --repository-name put-pedido
+aws sts get-caller-identity
+
+aws ecr describe-repositories --region us-east-1\
+
+aws sts get-caller-identity\
+
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <IDAWS>.dkr.ecr.us-east-1.amazonaws.com/post-pedido\
+
+docker tag post-pedido:latest <IDAWS>.dkr.ecr.us-east-1.amazonaws.com/post-pedido:latest
+docker push <IDAWS>.dkr.ecr.us-east-1.amazonaws.com/post-pedido:latest
+docker tag put-pedido:latest <IDAWS>.dkr.ecr.us-east-1.amazonaws.com/put-pedido:latest
+docker push 200~<IDAWS>.dkr.ecr.us-east-1.amazonaws.com/put-pedido:latest
+docker push <IDAWS>.dkr.ecr.us-east-1.amazonaws.com/put-pedido:latest

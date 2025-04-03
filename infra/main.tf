@@ -15,7 +15,22 @@ module "dynamodb_pedidos" {
   }
 }
 
-# MÓDULOS DE LAMBDA
+# MÓDULOS FARGATE
+module "fargate_post_pedido" {
+  source              = "./modules/fargate"
+  cluster_name        = "fargate-cluster"
+  post_pedido_image   = "idACCaws.dkr.ecr.us-east-1.amazonaws.com/post-pedido:latest"
+  put_pedido_image    = "idACCaws.dkr.ecr.us-east-1.amazonaws.com/put-pedido:latest"
+  
+  subnets             = ["subnet-09d66670545f16a07"]
+  security_groups     = ["sg-0673c87a97e88ad2f"]
+}
+
+output "fargate_cluster_id" {
+  value = module.fargate_post_pedido.fargate_cluster_id
+}
+
+# MÓDULOS LAMBDA
 
 module "lambda_get_pedido" {
   source        = "./modules/lambda_function"
