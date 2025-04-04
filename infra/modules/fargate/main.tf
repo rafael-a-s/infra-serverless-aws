@@ -89,6 +89,84 @@ resource "aws_iam_role" "ecs_task_execution_role" {
   })
 }
 
+# Network Load Balancer (NLB) para expor os serviços Fargate
+resource "aws_lb" "fargate_nlb" {
+  name               = "fargate-nlb"
+  internal           = false  # NLB acessível na internet
+  load_balancer_type = "network"
+  subnets            = var.subnets
+}
+
+# Target Group para o serviço POST
+resource "aws_lb_target_group" "post_pedido_tg" {
+  name        = "post-pedido-tg"
+  port        = 3000
+  protocol    = "TCP"
+  vpc_id      = var.vpc_id
+  target_type = "ip"
+}
+
+# Target Group para o serviço PUT
+resource "aws_lb_target_group" "put_pedido_tg" {
+  name        = "put-pedido-tg"
+  port        = 3001
+  protocol    = "TCP"
+  vpc_id      = var.vpc_id
+  target_type = "ip"
+}
+
+# Listener para o POST
+resource "aws_lb_listener" "post_pedido_listener" {
+  load_balancer_arn = aws_lb.fargate_nlb.arn
+  port              = 3000
+  protocol          = "TCP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.post_pedido_tg.arn
+  }
+}
+
+# Listener para o PUT
+resource "aws_lb_listener" "put_pedido_listener" {
+  load_balancer_arn = aws_lb.fargate_nlb.arn
+  port              = 3001
+  protocol          = "TCP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.put_pedido_tg.arn
+  }
+}
+
+# Obtendo o Security Group padrão da VPC
+data "aws_security_group" "default" {
+  filter {
+    name   = "group-name"
+    values = ["default"]
+  }
+}
+
+# Adicionando a regra para permitir tráfego na porta 3000
+resource "aws_security_group_rule" "allow_tcp_3000" {
+  type                     = "ingress"
+  from_port                = 3000
+  to_port                  = 3000
+  protocol                 = "tcp"
+  cidr_blocks             = ["0.0.0.0/0"]  # Permitindo acesso de qualquer IP
+  security_group_id       = data.aws_security_group.default.id
+}
+
+# Adicionando a regra para permitir tráfego na porta 3001
+resource "aws_security_group_rule" "allow_tcp_3001" {
+  type                     = "ingress"
+  from_port                = 3001
+  to_port                  = 3001
+  protocol                 = "tcp"
+  cidr_blocks             = ["0.0.0.0/0"]  # Permitindo acesso de qualquer IP
+  security_group_id       = data.aws_security_group.default.id
+}
+
 # Attach the Amazon ECS Task Execution Role policy
 resource "aws_iam_role_policy_attachment" "ecs_task_execution_role_policy" {
   role       = aws_iam_role.ecs_task_execution_role.name

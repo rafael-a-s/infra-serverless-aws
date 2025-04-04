@@ -13,3 +13,15 @@ output "post_pedido_service_name" {
 output "put_pedido_service_name" {
   value = aws_ecs_service.put_pedido_service.name
 }
+
+# Expondo o DNS do NLB para acessar os métodos
+output "nlb_dns_name" {
+  value = aws_lb.fargate_nlb.dns_name
+  description = "DNS do Network Load Balancer"
+}
+
+# Expondo o ARN do Load Balancer para futuras referências
+output "nlb_arn" {
+  value = aws_lb.fargate_nlb.arn
+  description = "ARN do Network Load Balancer"
+}

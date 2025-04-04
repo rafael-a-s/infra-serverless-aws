@@ -34,3 +34,8 @@ variable "put_pedido_image" {
   type        = string
   description = "URL da imagem Docker do Put Pedido no ECR"
 }
+
+variable "vpc_id" {
+  description = "ID da VPC onde os recursos serão implantados"
+  type        = string
+}

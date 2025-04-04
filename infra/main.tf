@@ -19,11 +19,12 @@ module "dynamodb_pedidos" {
 module "fargate_post_pedido" {
   source              = "./modules/fargate"
   cluster_name        = "fargate-cluster"
-  post_pedido_image   = "idACCaws.dkr.ecr.us-east-1.amazonaws.com/post-pedido:latest"
-  put_pedido_image    = "idACCaws.dkr.ecr.us-east-1.amazonaws.com/put-pedido:latest"
+  post_pedido_image   = "637423576760.dkr.ecr.us-east-1.amazonaws.com/post-pedido:latest"
+  put_pedido_image    = "637423576760.dkr.ecr.us-east-1.amazonaws.com/put-pedido:latest"
   
   subnets             = ["subnet-09d66670545f16a07"]
   security_groups     = ["sg-0673c87a97e88ad2f"]
+  vpc_id              = "vpc-03712270d4a22c15f"
 }
 
 output "fargate_cluster_id" {
