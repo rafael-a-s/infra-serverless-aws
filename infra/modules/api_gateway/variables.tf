@@ -32,3 +32,14 @@ variable "region" {
   type        = string
   description = "Região AWS para compor a URL do endpoint"
 }
+
+variable "nlb_arn" {
+  description = "ARN do NLB para o VPC Link"
+  type        = string
+}
+
+variable "nlb_dns_name" {
+  description = "DNS do NLB"
+  type        = string
+}
+

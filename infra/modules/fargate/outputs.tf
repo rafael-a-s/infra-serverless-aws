@@ -25,3 +25,11 @@ output "nlb_arn" {
   value = aws_lb.fargate_nlb.arn
   description = "ARN do Network Load Balancer"
 }
+
+output "fargate_nlb_arn" {
+  value = aws_lb.fargate_nlb.arn
+}
+
+output "fargate_nlb_dns_name" {
+  value = aws_lb.fargate_nlb.dns_name
+}

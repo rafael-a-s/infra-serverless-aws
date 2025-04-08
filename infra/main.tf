@@ -52,10 +52,12 @@ module "lambda_delete_pedido" {
 module "api_gateway" {
   source                      = "./modules/api_gateway"
   api_name                    = "rafael-api"
-  api_description             = "API com GET e DELETE de pedido integrando Lambda"
+  api_description             = "API com operações CRUD para pedidos"
   lambda_get_invoke_arn       = module.lambda_get_pedido.invoke_arn
   lambda_get_function_name    = module.lambda_get_pedido.function_name
   lambda_delete_invoke_arn    = module.lambda_delete_pedido.invoke_arn
   lambda_delete_function_name = module.lambda_delete_pedido.function_name
-  region                      = var.region # <--- aqui
+  region                      = var.region
+  nlb_arn                     = module.fargate_post_pedido.fargate_nlb_arn
+  nlb_dns_name                = module.fargate_post_pedido.fargate_nlb_dns_name
 }
