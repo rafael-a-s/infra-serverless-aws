@@ -1,0 +1,117 @@
+#slide-container {
+	height: 100vh !important;
+}
+
+.about-me-img {
+	width: 200px;
+	height: 200px;
+}
+
+.br-50p {
+	border-radius: 50%;
+}
+
+.br-100p {
+	border-radius: 100%;
+}
+
+.object-cover-top {
+	object-fit: cover;
+	object-position: top;
+}
+
+.no-decoration {
+	text-decoration: none !important;
+}
+
+.no-border {
+	border: 0 !important;
+}
+
+.no-mb {
+	margin-bottom: 0 !important;
+}
+
+.no-mt {
+	margin-top: 0 !important;
+}
+
+.no-m {
+	margin: 0 !important;
+}
+
+.no-pb {
+	padding-bottom: 0 !important;
+}
+
+.no-pt {
+	padding-top: 0 !important;
+}
+
+.no-p {
+	padding: 0 !important;
+}
+
+.circle {
+	width: 50px;
+	border-radius: 50%;
+	line-height: 0;
+	position: relative;
+}
+
+.circle::after {
+	content: "";
+	display: block;
+	padding-bottom: 100%;
+}
+
+.circle>* {
+	position: absolute;
+	bottom: 50%;
+	width: 100%;
+	text-align: center;
+}
+
+/* h3 {
+	color: currentColor !important;
+	opacity: 1 !important;
+} */
+
+.font-bold-force {
+	font-weight: bold !important;
+}
+
+.arrow-container {
+	width: 35px;
+	height: 35px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 10px;
+	box-sizing: border-box;
+	border-radius: 5px;
+
+	text-align: center;
+}
+
+.arrow-container>* {
+	text-align: center;
+}
+
+.bg-404 {
+	background-image: url('/media/backgrounds/running.jpeg')
+}
+
+.no-list {
+	list-style: none;
+}
+
+.dark .light-image {
+	display: none;
+}
+
+.light .dark-image {
+	display: none;
+}

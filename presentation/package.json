@@ -1,0 +1,17 @@
+{
+	"private": true,
+	"scripts": {
+		"dev": "slidev",
+		"build": "slidev build",
+		"export": "slidev export"
+	},
+	"dependencies": {
+		"@slidev/cli": "*",
+		"@slidev/theme-default": "*",
+		"sass": "^1.34.1"
+	},
+	"name": "presentation",
+	"devDependencies": {
+		"playwright-chromium": "^1.11.1"
+	}
+}
