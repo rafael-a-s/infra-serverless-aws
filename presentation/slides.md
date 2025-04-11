@@ -7,7 +7,7 @@ theme: ./theme
 #==> Layout
 layout: cover
 class: bg-blend-overlay bg-black65
-background: '/media/backgrounds/mountain-bike.jpeg'
+background: '/media/backgrounds/unitinswide.png'
 
 #==> Fonts
 fonts:
@@ -33,7 +33,7 @@ info: |
 ---
 <div class="abs-tl top-5 left-5 mb-4">
   <a
-    href="https://www.estg.ipp.pt"
+    href="https://www.unitins.br/nPortal/"
     target="_blank"
     class="
       opacity-50
@@ -43,7 +43,7 @@ info: |
     "
   >
     <img
-      src="/media/logos/img.png"
+      src="/media/logos/unitins.png"
       class="w-75px"
       alt="P.Porto"
     />
@@ -90,15 +90,11 @@ src: ./pages/techs.md
 ---
 
 ---
-src: ./pages/graphql.md
+src: ./pages/terraform.md
 ---
 
 ---
 src: ./pages/button.md
----
-
----
-src: ./pages/solution.md
 ---
 
 ---

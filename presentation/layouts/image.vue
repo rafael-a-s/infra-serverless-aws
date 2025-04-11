@@ -14,7 +14,7 @@ const style = computed(() => handleBackground(props.image));
 <template>
 	<div class="slidev-layout w-full h-full" :style="style">
 		<a
-			href="https://www.estg.ipp.pt"
+			href="https://www.unitins.br/nPortal/"
 			target="_blank"
 			class="
 				abs-tl
@@ -26,7 +26,7 @@ const style = computed(() => handleBackground(props.image));
 				shadow-none
 			"
 		>
-			<img src="/media/logos/pporto.png" class="w-75px" alt="P.Porto" />
+			<img src="/media/logos/unitins.png" class="w-75px" alt="P.Porto" />
 		</a>
 
 		<DarkToggle class="abs-tr right-6 top-6" />

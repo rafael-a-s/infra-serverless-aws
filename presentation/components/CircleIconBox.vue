@@ -8,7 +8,6 @@
                 flex
                 items-center
                 justify-center
-                bg-altBlue
                 rounded-full
                 mb-2
             "

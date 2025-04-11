@@ -32,7 +32,7 @@ const props = defineProps({
 <template>
 	<div class="h-full w-full">
 		<a
-			href="https://www.estg.ipp.pt"
+			href="https://www.unitins.br/nPortal/"
 			target="_blank"
 			class="
 				abs-tl
@@ -44,7 +44,7 @@ const props = defineProps({
 				shadow-none
 			"
 		>
-			<img src="/media/logos/pporto.png" class="w-75px" alt="P.Porto" />
+			<img src="/media/logos/unitins.png" class="w-75px" alt="P.Porto" />
 		</a>
 
 		<DarkToggle class="abs-tr right-6 top-6" />

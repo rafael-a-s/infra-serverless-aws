@@ -1,28 +1,28 @@
 ---
 layout: image-right-overlay
 class: 'flex flex-col justify-center'
-image: '/media/backgrounds/bike.jpeg'
+image: '/media/backgrounds/blue.png'
 ---
 
-<h1 class="font-300 no-m">Trabalho Futuro</h1>
-<h3 class="no-m">Pontos a melhorar ou a realizar</h3>
+<h1 class="font-300 no-m">Próximos passos</h1>
+<h3 class="no-m">Implementações</h3>
 
 <div class="grid grid-cols-3 gap-2 mt-6">
 <v-clicks>
     <CircleIconBox>
         <template v-slot:default>
-        <LibraryIcon class="w-25px h-25px text-white" />
+        <logos-aws-cloudwatch class="w-30px h-30px" />
         </template>
         <template v-slot:title>
-        Biblioteca de Componentes
+        CloudWatch para monitorar
         </template>
     </CircleIconBox>
     <CircleIconBox>
         <template v-slot:default>
-        <TestIcon class="w-25px h-25px text-white" />
+        <logos-gitlab class="w-30px h-30px" />
         </template>
         <template v-slot:title>
-        Realização de Testes
+        CI/CD com GitHub Actions + Terraform Cloud ou CodePipeline
         </template>
     </CircleIconBox>
 </v-clicks>
