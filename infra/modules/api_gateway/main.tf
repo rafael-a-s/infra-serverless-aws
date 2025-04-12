@@ -107,6 +107,32 @@ resource "aws_api_gateway_integration" "post" {
   }
 }
 
+resource "aws_api_gateway_method_response" "post_201" {
+  rest_api_id = aws_api_gateway_rest_api.this.id
+  resource_id = aws_api_gateway_resource.pedido.id
+  http_method = aws_api_gateway_method.post.http_method
+  status_code = "201"
+
+  response_models = {
+    "application/json" = "Empty"
+  }
+}
+
+# Configurando a resposta da integração para 201 Created
+resource "aws_api_gateway_integration_response" "post_201" {
+  depends_on = [aws_api_gateway_integration.post]
+  rest_api_id = aws_api_gateway_rest_api.this.id
+  resource_id = aws_api_gateway_resource.pedido.id
+  http_method = aws_api_gateway_method.post.http_method
+  status_code = aws_api_gateway_method_response.post_201.status_code
+
+  # Mapeia a resposta do backend para o cliente
+  response_templates = {
+    "application/json" = ""  # Passa o corpo da resposta sem modificações
+  }
+}
+
+
 resource "aws_api_gateway_method" "put" {
   rest_api_id   = aws_api_gateway_rest_api.this.id
   resource_id   = aws_api_gateway_resource.pedido_id.id
