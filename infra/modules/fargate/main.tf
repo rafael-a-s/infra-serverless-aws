@@ -46,7 +46,18 @@ resource "aws_ecs_task_definition" "post_pedido_task" {
       containerPort = 3000
       hostPort      = 3000
     }]
+    
+    logConfiguration = {
+      logDriver = "awslogs"
+      options = {
+        "awslogs-group"         = "/aws/ecs/${var.cluster_name}/post-pedido-service"
+        "awslogs-region"        = var.region
+        "awslogs-stream-prefix" = "post-pedido"
+      }
+    }
   }])
+
+  
 }
 
 # ECS Task Definition para o Put-Pedido com logs
@@ -67,6 +78,15 @@ resource "aws_ecs_task_definition" "put_pedido_task" {
       containerPort = 3000
       hostPort      = 3000
     }]
+
+    logConfiguration = {
+      logDriver = "awslogs"
+      options = {
+        "awslogs-group"         = "/aws/ecs/${var.cluster_name}/put-pedido-service"
+        "awslogs-region"        = var.region
+        "awslogs-stream-prefix" = "put-pedido"
+      }
+    }
   }])
 }
 

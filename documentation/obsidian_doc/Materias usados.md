@@ -7,3 +7,4 @@
 - [Basic serverless CRUD Application on AWS with CDK for Terraform](https://www.youtube.com/watch?v=sf2EgmHRHiw)
 - [Tutorial: Crie uma API HTTP CRUD com o Lambda e o DynamoDB](https://docs.aws.amazon.com/pt_br/apigateway/latest/developerguide/http-api-dynamo-db.html)
 - [Processe eventos de forma assíncrona com o Amazon API Gateway, o Amazon SQS e o AWS Fargate](https://docs.aws.amazon.com/pt_br/prescriptive-guidance/latest/patterns/process-events-asynchronously-with-amazon-api-gateway-amazon-sqs-and-aws-fargate.html)
+- [Artigo pipeline](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions)

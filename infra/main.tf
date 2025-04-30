@@ -61,3 +61,39 @@ module "api_gateway" {
   nlb_arn                     = module.fargate_post_pedido.fargate_nlb_arn
   nlb_dns_name                = module.fargate_post_pedido.fargate_nlb_dns_name
 }
+
+
+module "cloudwatch" {
+  source               = "./modules/cloudwatch"
+  region               = var.region
+  
+  # API Gateway Configuration
+  enable_api_gateway_logs = true
+  api_gateway_name        = module.api_gateway.api_id
+  api_gateway_stage       = "dev"
+  
+  # Lambda Configuration
+  enable_lambda_logs    = true
+  lambda_function_names = [
+    module.lambda_get_pedido.function_name,
+    module.lambda_delete_pedido.function_name
+  ]
+  
+  # Fargate Configuration
+  enable_fargate_logs    = true
+  fargate_cluster_name   = module.fargate_post_pedido.fargate_cluster_id
+  fargate_service_names  = [
+    "post-pedido-service",
+    "put-pedido-service"
+  ]
+  
+  # Log Retention & Optional Features
+  log_retention_days    = 3      # Very low retention to minimize costs
+  create_basic_alarms   = false  # Set to true if you want basic alarms
+  create_dashboard      = false  # Set to true if you want a dashboard
+  
+  tags = {
+    Environment = "dev"
+    Projeto     = "PedidosAPI"
+  }
+}

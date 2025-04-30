@@ -39,3 +39,9 @@ variable "vpc_id" {
   description = "ID da VPC onde os recursos serão implantados"
   type        = string
 }
+
+variable "region" {
+  description = "AWS region"
+  type        = string
+  default     = "us-east-1"
+}
