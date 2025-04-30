@@ -117,3 +117,8 @@ docker push <IDAWS>.dkr.ecr.us-east-1.amazonaws.com/post-pedido:latest
 docker tag put-pedido:latest <IDAWS>.dkr.ecr.us-east-1.amazonaws.com/put-pedido:latest
 docker push 200~<IDAWS>.dkr.ecr.us-east-1.amazonaws.com/put-pedido:latest
 docker push <IDAWS>.dkr.ecr.us-east-1.amazonaws.com/put-pedido:latest
+```
+
+Dia 30 de Abril
+
+Adiciona módulo CloudWatch para registrar serviços API Gateway, Lambda e Fargate
