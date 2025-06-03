@@ -12,7 +12,6 @@
 /infra/.terraform/
 
 # Arquivos de saída (ex: zips locais)
-*.zip
 
 # Pastas de node_modules das funções Lambda (só com zip já basta)
 **/node_modules/
