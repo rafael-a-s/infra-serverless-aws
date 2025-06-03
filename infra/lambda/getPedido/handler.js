@@ -1,63 +1,57 @@
-const AWS = require('aws-sdk');
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
+const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
+const { DynamoDBDocumentClient, GetCommand, ScanCommand } = require("@aws-sdk/lib-dynamodb");
+
+// Criar cliente DynamoDB
+const client = new DynamoDBClient({});
+const docClient = DynamoDBDocumentClient.from(client);
 
 const getPedido = async (event) => {
-    const { id } = event.pathParameters;
-    
-    const params = {
-        TableName: 'Pedidos',
-        Key: { id }
-    };
+    try {
+        // Verificar se há ID nos pathParameters
+        const id = event.pathParameters?.id;
 
-    try {const AWS = require('aws-sdk');
-        const dynamoDb = new AWS.DynamoDB.DocumentClient();
+        if (id && id !== 'all') {
+            // Buscar pedido específico por ID
+            const command = new GetCommand({
+                TableName: 'Pedidos',
+                Key: { id }
+            });
 
-        const getPedido = async (event) => {
-            // Verificar se há ID nos pathParameters
-            const id = event.pathParameters?.id;
+            const data = await docClient.send(command);
 
-            if (id) {
-                // Buscar pedido específico por ID
-                const params = {
-                    TableName: 'Pedidos',
-                    Key: { id }
+            if (!data.Item) {
+                return {
+                    statusCode: 404,
+                    body: JSON.stringify({ message: 'Pedido não encontrado' })
                 };
-
-                try {
-                    const data = await dynamoDb.get(params).promise();
-                    return {
-                        statusCode: 200,
-                        body: JSON.stringify(data.Item)
-                    };
-                } catch (error) {
-                    return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
-                }
-            } else {
-                // Listar todos os pedidos
-                const params = {
-                    TableName: 'Pedidos'
-                };
-
-                try {
-                    const data = await dynamoDb.scan(params).promise();
-                    return {
-                        statusCode: 200,
-                        body: JSON.stringify(data.Items)
-                    };
-                } catch (error) {
-                    return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
-                }
             }
-        };
 
-        module.exports = { getPedido };
-        const data = await dynamoDb.get(params).promise();
-        return {
-            statusCode: 200,
-            body: JSON.stringify(data.Item)
-        };
+            return {
+                statusCode: 200,
+                body: JSON.stringify(data.Item)
+            };
+        } else {
+            // Listar todos os pedidos (sem ID ou com ID = "all")
+            const command = new ScanCommand({
+                TableName: 'Pedidos'
+            });
+
+            const data = await docClient.send(command);
+
+            return {
+                statusCode: 200,
+                body: JSON.stringify(data.Items || [])
+            };
+        }
     } catch (error) {
-        return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
+        console.error('Erro ao buscar pedidos:', error);
+        return {
+            statusCode: 500,
+            body: JSON.stringify({
+                error: 'Erro interno do servidor',
+                message: error.message
+            })
+        };
     }
 };
 
